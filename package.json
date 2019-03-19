@@ -1,0 +1,43 @@
+{
+  "id": "514F1E6B-0397-46A8-ACCD-0B9E852D8B16",
+  "name": "unomaly-plugin-opsgenie",
+  "description": "Unomaly OpsGenie Plugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "apiKey": {
+        "title": "API Key",
+        "description": "OpsGenie API Key",
+        "type": "string"
+      }
+    },
+    "required": [
+      "apiKey"
+    ]
+  },
+  "configuration": {
+    "type": "object",
+    "properties": {
+      "apiUrl": {
+        "title": "OpsGenie API URL",
+        "description": "URL for the OpsGenie API, for example https://api.opsgenie.com",
+        "default": "https://api.opsgenie.com",
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "required": [
+      "apiUrl"
+    ]
+  },
+  "dependencies": {
+    "opsgenie-sdk": "^0.4.3"
+  },
+  "bundledDependencies": [
+    "opsgenie-sdk"
+  ],
+  "npm.exclude": ".vscode/*"
+}
