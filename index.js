@@ -3,13 +3,13 @@ const opsgenie = require('opsgenie-sdk');
 const MAX_TITLE_EVENT_SIZE = 256;
 
 function stripSpecialChars(str) {
-  return str.replace(/[&\/\\#,+()$~%.'":*?<>{}]\`/g, "'");
+  return str.replace(/[&\/\\#,+()$~%'":*?<>{}]\`/g, "");
 }
 
 module.exports = {
   handle: function(event, context, callback) {
     const apiUrl = context.configuration.apiUrl;
-    const apiKey = context.parameters.apiKey;
+    const apiKey = context.configuration.apiKey;
     const data = context.data;
     let system;
     let url = '';
@@ -38,7 +38,7 @@ module.exports = {
         score = data.score;
   
         opsgenieMessage = 
-         `Unomaly: ${topEv.data.substring(0, MAX_TITLE_EVENT_SIZE)}`;
+         `${topEv.data.substring(0, MAX_TITLE_EVENT_SIZE)}`;
         
          opsgenieDescription += 'See details at ' + url + '\n';
 
@@ -47,17 +47,18 @@ module.exports = {
           const knownNames = Object.keys(knowns).map(
             k => ` <pre>${stripSpecialChars(knowns[k].name)}</pre>`
           );
-
           opsgenieDescription += 'Contains knowns: ' + knownNames.join(', ') + '\n';
 
           // Respect tags
-          // Object.keys(knowns).forEach(
-          //   // k => opsgenieTags.concat(knowns[k]['tags'])
-          //   k => console.log("WAT: " + knowns[k]['tags'])
-          // );
-          // console.log("TAGS IS NOW: " + opsgenieTags);
+          for (var i in knowns) {
+            let tags = knowns[i].tags;
+            
+            if (tags.length > 0) {
+              tags.map(t => opsgenieTags.push(t));
+            }
+          }
         }
-        opsgenieDescription += 'Top event:\n'
+        opsgenieDescription += 'Top event:\n';
         opsgenieDescription += '<code>' + topEv.data.substring(0, 10000) + '</code>';
         
         break;

@@ -4,20 +4,7 @@
   "description": "Unomaly OpsGenie Plugin",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "ISC",
-  "parameters": {
-    "type": "object",
-    "properties": {
-      "apiKey": {
-        "title": "API Key",
-        "description": "OpsGenie API Key",
-        "type": "string"
-      }
-    },
-    "required": [
-      "apiKey"
-    ]
-  },
+  "license": "MIT",
   "configuration": {
     "type": "object",
     "properties": {
@@ -27,10 +14,16 @@
         "default": "https://api.opsgenie.com",
         "type": "string",
         "format": "uri"
+      },
+      "apiKey": {
+        "title": "API Key",
+        "description": "OpsGenie API Key",
+        "type": "string"
       }
     },
     "required": [
-      "apiUrl"
+      "apiUrl",
+      "apiKey"
     ]
   },
   "dependencies": {
