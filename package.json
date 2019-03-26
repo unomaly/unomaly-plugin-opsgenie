@@ -32,5 +32,8 @@
   "bundledDependencies": [
     "opsgenie-sdk"
   ],
-  "npm.exclude": ".vscode/*"
+  "npm.exclude": [
+    ".vscode/*",
+    "img/*"
+  ]
 }

@@ -3,6 +3,8 @@
 This action plugin for [Unomaly](https://unomaly.com/) creates alerts in
 OpsGenie.
 
+![Overview](./img/pic.png)
+
 ## Installation
 
 Create the npm package (`make build`) and upload the .tgz to
